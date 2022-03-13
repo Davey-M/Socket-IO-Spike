@@ -1,7 +1,7 @@
-function Player() {
+function Player({ main = false }) {
   return (
     <>
-      <div className='player'></div>
+      <div className={main ? 'player main' : 'player'}></div>
     </>
   );
 }

@@ -49,3 +49,19 @@
 
   border-radius: 10px;
 }
+
+.player {
+  background-color: red;
+  position: absolute;
+  top: 0;
+  left: 0;
+
+  width: 80px;
+  height: 80px;
+
+  border-radius: 5px;
+}
+
+.player.main {
+  background-color: blue;
+}
