@@ -3,7 +3,11 @@ function Player({ main = false, x = 0, y = 0 }) {
     <>
       <div
         className={main ? 'player main' : 'player'}
-        style={{ left: x + 'px', top: y + 'px' }}
+        style={{
+          marginLeft: x + 'px',
+          marginTop: y + 'px',
+          zIndex: main ? 2 : 1,
+        }}
       ></div>
     </>
   );

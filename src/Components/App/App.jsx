@@ -5,11 +5,12 @@ import Player from '../Player/Player';
 import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
+let id;
+
 function App() {
   const gameBoard = useRef();
 
   const [players, setPlayers] = useState([]);
-  let id;
 
   const handleClick = (e, socket) => {
     const boardSpace = gameBoard.current.getBoundingClientRect();
@@ -18,7 +19,7 @@ function App() {
       y: e.y - boardSpace.y,
     };
 
-    console.log(mousePosition);
+    // console.log(mousePosition);
 
     socket.emit('move', { ...mousePosition });
   };
@@ -30,16 +31,12 @@ function App() {
     const socket = io('http://localhost:5000');
 
     socket.on('connect', () => {
-      console.log(socket.id);
+      // console.log(socket.id);
       id = socket.id;
     });
 
-    socket.on('moving', (data) => {
-      console.log('moving', data);
-    });
-
     socket.on('new-player', (players) => {
-      console.log({ players });
+      // console.log({ players });
       setPlayers(players);
     });
 
@@ -59,7 +56,8 @@ function App() {
       <header className='App-header'>
         <div className='board' ref={gameBoard}>
           {players.map((player, index) => {
-            console.log(player.x);
+            // console.log(player.x);
+            // console.log(id);
             return (
               <Player
                 key={index}
