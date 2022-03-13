@@ -1,7 +1,10 @@
-function Player({ main = false }) {
+function Player({ main = false, x = 0, y = 0 }) {
   return (
     <>
-      <div className={main ? 'player main' : 'player'}></div>
+      <div
+        className={main ? 'player main' : 'player'}
+        style={{ left: x, top: y }}
+      ></div>
     </>
   );
 }
