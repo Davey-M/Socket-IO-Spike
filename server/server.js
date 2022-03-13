@@ -6,20 +6,20 @@ require('dotenv').config();
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: process.env.PUBLIC_URL || "http://localhost:3000",
-  }
-});
-// const io = new Server(httpServer);
+// const io = new Server(httpServer, {
+//   cors: {
+//     origin: process.env.PUBLIC_URL || "http://localhost:3000",
+//   }
+// });
+const io = new Server(httpServer);
 
 const port = process.env.PORT || 5000;
 
 app.use(express.static('build'));
 
-app.get('/test', (req, res) => {
-  res.sendStatus(200);
-})
+// app.get('/test', (req, res) => {
+//   res.sendStatus(200);
+// })
 
 let players = [];
 

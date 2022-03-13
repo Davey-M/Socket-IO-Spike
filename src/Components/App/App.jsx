@@ -25,8 +25,8 @@ function App() {
   };
 
   useEffect(async () => {
-    let response = await axios.get('/test');
-    console.log(response);
+    // let response = await axios.get('/test');
+    // console.log(response);
 
     const socket = io('http://localhost:5000');
 
