@@ -2,18 +2,16 @@ import './App.css';
 import io from 'socket.io-client';
 
 import Player from '../Player/Player';
-import { useEffect, useRef } from 'react';
+import { useEffect, useRef, useState } from 'react';
 import axios from 'axios';
 
 function App() {
-  const socket = io('http://localhost:5000');
   const gameBoard = useRef();
 
-  socket.on('connect', () => {
-    console.log(socket.id);
-  });
+  const [players, setPlayers] = useState([]);
+  let id;
 
-  const handleClick = (e) => {
+  const handleClick = (e, socket) => {
     const boardSpace = gameBoard.current.getBoundingClientRect();
     const mousePosition = {
       x: e.x - boardSpace.x,
@@ -21,23 +19,56 @@ function App() {
     };
 
     console.log(mousePosition);
+
+    socket.emit('move', { ...mousePosition });
   };
 
   useEffect(async () => {
     let response = await axios.get('/test');
     console.log(response);
 
-    gameBoard.current.addEventListener('click', handleClick);
+    const socket = io('http://localhost:5000');
 
-    return () => gameBoard.current.removeEventListener('click', handleClick);
-  });
+    socket.on('connect', () => {
+      console.log(socket.id);
+      id = socket.id;
+    });
+
+    socket.on('moving', (data) => {
+      console.log('moving', data);
+    });
+
+    socket.on('new-player', (players) => {
+      console.log({ players });
+      setPlayers(players);
+    });
+
+    gameBoard.current.addEventListener('click', (e) => {
+      handleClick(e, socket);
+    });
+
+    return () =>
+      gameBoard.current.removeEventListener('click', (e) => {
+        handleClick(e, socket);
+      });
+  }, []);
 
   // console.log(socket);
   return (
     <div className='App'>
       <header className='App-header'>
         <div className='board' ref={gameBoard}>
-          <Player main={true} />
+          {players.map((player, index) => {
+            console.log(player.x);
+            return (
+              <Player
+                key={index}
+                x={player.x}
+                y={player.y}
+                main={id === player.id}
+              />
+            );
+          })}
         </div>
       </header>
     </div>

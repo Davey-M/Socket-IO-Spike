@@ -3,7 +3,7 @@ function Player({ main = false, x = 0, y = 0 }) {
     <>
       <div
         className={main ? 'player main' : 'player'}
-        style={{ left: x, top: y }}
+        style={{ left: x + 'px', top: y + 'px' }}
       ></div>
     </>
   );
