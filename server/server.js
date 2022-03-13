@@ -12,7 +12,7 @@ const io = new Server(httpServer, {
 
 const port = process.env.PORT || 5000;
 
-app.use(express.static(__dirname + '/public'));
+app.use(express.static('build'));
 
 app.get('/test', (req, res) => {
   res.sendStatus(200);
@@ -21,7 +21,7 @@ app.get('/test', (req, res) => {
 let players = [];
 
 io.on('connection', (socket) => {
-  console.log(socket.id);
+  // console.log(socket.id);
 
   socket.join('room');
 
@@ -30,7 +30,7 @@ io.on('connection', (socket) => {
   io.emit('new-player', players);
 
   socket.on('move', (data) => {
-    console.log(`${socket.id} moved to ${JSON.stringify(data)}`);
+    // console.log(`${socket.id} moved to ${JSON.stringify(data)}`);
 
     players = players.map(player => {
       if (player.id === socket.id) {
