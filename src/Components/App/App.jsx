@@ -31,7 +31,7 @@ function App() {
     const socket = io();
 
     socket.on('connect', () => {
-      // console.log(socket.id);
+      console.log(socket.id);
       id = socket.id;
     });
 
