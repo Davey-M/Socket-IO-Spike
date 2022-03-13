@@ -24,9 +24,11 @@ function App() {
     socket.emit('move', { ...mousePosition });
   };
 
-  useEffect(async () => {
-    let response = await axios.get('/test');
-    console.log(response);
+  useEffect(() => {
+    (async () => {
+      let response = await axios.get('/test');
+      console.log(response);
+    })();
 
     const socket = io();
 
