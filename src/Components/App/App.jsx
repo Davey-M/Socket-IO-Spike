@@ -28,7 +28,7 @@ function App() {
     // let response = await axios.get('/test');
     // console.log(response);
 
-    const socket = io('http://localhost:5000');
+    const socket = io();
 
     socket.on('connect', () => {
       // console.log(socket.id);
