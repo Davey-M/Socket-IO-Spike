@@ -51,7 +51,7 @@
 }
 
 .player {
-  background-color: red;
+  /* background-color: red; */
   position: absolute;
   /* top: 0;
   left: 0; */
@@ -66,6 +66,10 @@
   transition: margin 1s linear;
 }
 
-.player.main {
-  background-color: blue;
+.player img {
+  width: 100%;
 }
+
+/* .player.main {
+  background-color: blue;
+} */
