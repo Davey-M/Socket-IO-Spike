@@ -4,11 +4,12 @@ const { Server } = require('socket.io');
 
 const app = express();
 const httpServer = createServer(app);
-const io = new Server(httpServer, {
-  cors: {
-    origin: process.env.PUBLIC_URL || "http://localhost:3000",
-  }
-});
+// const io = new Server(httpServer, {
+//   cors: {
+//     origin: process.env.PUBLIC_URL || "http://localhost:3000",
+//   }
+// });
+const io = new Server(httpServer);
 
 const port = process.env.PORT || 5000;
 
