@@ -1,5 +1,5 @@
 import { useEffect, useState } from 'react';
-import jumping from './images/jumping.gif';
+import jumping from './images/jumping2.gif';
 import standing from './images/standing.png';
 
 function Player({ main = false, x = 0, y = 0 }) {
@@ -9,7 +9,7 @@ function Player({ main = false, x = 0, y = 0 }) {
     setJump(true);
     setTimeout(() => {
       setJump(false);
-    }, 1000);
+    }, 1500);
   }, [x, y]);
 
   return (
