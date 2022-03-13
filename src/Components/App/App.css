@@ -36,3 +36,16 @@
     transform: rotate(360deg);
   }
 }
+
+.board {
+  background-color: white;
+  position: relative;
+
+  width: 90vmin;
+  height: 90vmin;
+  margin-top: 10vmin auto;
+
+  overflow: hidden;
+
+  border-radius: 10px;
+}
