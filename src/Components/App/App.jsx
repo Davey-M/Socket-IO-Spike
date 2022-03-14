@@ -26,8 +26,12 @@ function App() {
 
   useEffect(() => {
     (async () => {
-      let response = await axios.get('/test');
-      console.log(response);
+      try {
+        let response = await axios.get('/test');
+        console.log(response);
+      } catch (err) {
+        console.error(err);
+      }
     })();
 
     const socket = io();
